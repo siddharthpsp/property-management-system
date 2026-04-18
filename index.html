@@ -13,25 +13,41 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #080d16;
+            color: #d0d8e4;
             min-height: 100vh;
-            padding: 20px;
         }
 
-        .login-container {
-            max-width: 400px;
-            margin: 100px auto;
-            background: white;
-            padding: 40px;
+        .login-screen {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .login-screen.hidden {
+            display: none;
+        }
+
+        .login-box {
+            background: #0f1624;
+            border: 1px solid #1a2232;
             border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
 
-        .login-container h1 {
-            text-align: center;
+        .login-box h1 {
+            color: #d4a928;
             margin-bottom: 30px;
-            color: #333;
+            text-align: center;
+            font-size: 24px;
         }
 
         .form-group {
@@ -40,60 +56,69 @@
 
         label {
             display: block;
+            color: #7a899c;
+            font-size: 12px;
             margin-bottom: 8px;
-            font-weight: 500;
-            color: #333;
+            font-weight: 600;
         }
 
         input, select {
             width: 100%;
             padding: 10px;
-            border: 1px solid #ddd;
+            background: #0a0f18;
+            border: 1px solid #263040;
             border-radius: 6px;
+            color: #d0d8e4;
             font-size: 14px;
         }
 
-        button {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: transform 0.2s;
+        input:focus, select:focus {
+            outline: none;
+            border-color: #d4a928;
+            box-shadow: 0 0 0 3px rgba(212, 169, 40, 0.1);
         }
 
-        button:hover {
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: #d4a928;
+            color: #080d16;
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: #e0b840;
             transform: translateY(-2px);
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
+        .app-container {
             display: none;
         }
 
-        .container.logged-in {
+        .app-container.visible {
             display: block;
         }
 
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 20px 30px;
+            background: #0f1624;
+            border-bottom: 1px solid #1a2232;
+            padding: 14px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
-        header h1 {
-            font-size: 24px;
+        .logo {
+            font-size: 19px;
+            font-weight: 800;
+            color: #d4a928;
         }
 
         .user-info {
@@ -102,56 +127,62 @@
             align-items: center;
         }
 
-        .logout-btn {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 8px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            border: none;
-            color: white;
-            font-weight: 500;
+        .user-info span {
+            font-size: 12px;
+            color: #7a899c;
         }
 
-        .sidebar {
+        .logout-btn {
+            padding: 6px 12px;
+            background: #141c2c;
+            color: #d4a928;
+            border: 1px solid #263040;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 11px;
+        }
+
+        .logout-btn:hover {
+            background: #1a2232;
+        }
+
+        .tabs {
             display: flex;
-            gap: 0;
-            border-bottom: 2px solid #e0e0e0;
-            background: #f5f5f5;
+            gap: 3px;
+            background: #0f1624;
+            padding: 10px 20px;
+            border-bottom: 1px solid #1a2232;
+            overflow-x: auto;
             flex-wrap: wrap;
         }
 
-        .tab-button {
-            flex: 1;
-            min-width: 120px;
-            padding: 15px;
+        .tab-btn {
+            padding: 8px 14px;
+            background: #141c2c;
+            color: #7a899c;
             border: none;
-            background: none;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 13px;
-            font-weight: 500;
-            color: #666;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
             transition: all 0.3s;
-            border-bottom: 3px solid transparent;
-            margin-bottom: -2px;
         }
 
-        .tab-button.active {
-            color: #667eea;
-            border-bottom-color: #667eea;
-            background: white;
+        .tab-btn.active {
+            background: #d4a928;
+            color: #080d16;
         }
 
-        .tab-button:hover {
-            background: white;
-        }
-
-        .tab-button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
+        .tab-btn:hover {
+            background: #1a2232;
         }
 
         .content {
-            padding: 30px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .tab-content {
@@ -164,33 +195,39 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
             margin: 20px 0;
         }
 
         .card {
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 20px;
-            background: #f9f9f9;
+            background: #0f1624;
+            border: 1px solid #1a2232;
+            border-radius: 9px;
+            padding: 15px;
         }
 
         .card h3 {
+            color: #d4a928;
+            font-size: 13px;
             margin-bottom: 10px;
-            color: #333;
-        }
-
-        .card p {
-            color: #666;
-            font-size: 14px;
         }
 
         .stat-value {
-            font-size: 28px;
-            font-weight: bold;
-            color: #667eea;
-            margin-top: 10px;
+            font-size: 24px;
+            font-weight: 800;
+            color: #80b8f0;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-row.full {
+            grid-template-columns: 1fr;
         }
 
         .table-container {
@@ -201,113 +238,137 @@
         table {
             width: 100%;
             border-collapse: collapse;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #e0e0e0;
+            font-size: 12px;
         }
 
         th {
-            background: #f5f5f5;
+            background: #141c2c;
+            padding: 10px;
+            text-align: left;
+            color: #7a899c;
             font-weight: 600;
-            color: #333;
+            border-bottom: 1px solid #1a2232;
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #0d1420;
         }
 
         tr:hover {
-            background: #f9f9f9;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .success-message {
-            background: #d4edda;
-            color: #155724;
-            padding: 12px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            display: none;
-        }
-
-        .success-message.show {
-            display: block;
-        }
-
-        .error-message {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 12px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            display: none;
-        }
-
-        .error-message.show {
-            display: block;
+            background: #0f1624;
         }
 
         .badge {
             display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 500;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
         }
 
         .badge-success {
-            background: #d4edda;
-            color: #155724;
+            background: #0a3d2e;
+            color: #5de0a8;
         }
 
         .badge-warning {
-            background: #fff3cd;
-            color: #856404;
+            background: #5c3a0a;
+            color: #f0d060;
         }
 
         .badge-danger {
-            background: #f8d7da;
-            color: #721c24;
+            background: #5c1a1a;
+            color: #f09090;
         }
 
         .badge-info {
-            background: #d1ecf1;
-            color: #0c5460;
+            background: #1a2d4a;
+            color: #80b8f0;
+        }
+
+        .btn-small {
+            padding: 5px 10px;
+            background: #141c2c;
+            color: #d4a928;
+            border: 1px solid #263040;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .btn-small:hover {
+            background: #1a2232;
         }
 
         .chart-container {
             position: relative;
             height: 300px;
-            margin: 30px 0;
+            margin: 20px 0;
+            background: #0f1624;
+            border: 1px solid #1a2232;
+            border-radius: 9px;
+            padding: 15px;
         }
 
-        .action-buttons {
+        .success-msg {
+            background: #0a3d2e;
+            color: #5de0a8;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .success-msg.show {
+            display: block;
+        }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal.show {
             display: flex;
-            gap: 10px;
-            margin-top: 10px;
         }
 
-        .btn-small {
-            padding: 6px 12px;
-            font-size: 12px;
-            background: #667eea;
-            color: white;
+        .modal-content {
+            background: #0f1624;
+            border: 1px solid #1a2232;
+            border-radius: 12px;
+            padding: 25px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            color: #d4a928;
+            font-size: 18px;
+        }
+
+        .close-btn {
+            background: none;
             border: none;
-            border-radius: 4px;
+            color: #7a899c;
+            font-size: 24px;
             cursor: pointer;
-        }
-
-        .btn-small:hover {
-            background: #5568d3;
         }
 
         @media (max-width: 768px) {
@@ -315,147 +376,143 @@
                 grid-template-columns: 1fr;
             }
 
-            .tab-button {
-                min-width: 100px;
-                padding: 10px;
-                font-size: 11px;
+            .tabs {
+                gap: 5px;
+            }
+
+            .tab-btn {
+                padding: 6px 10px;
+                font-size: 10px;
             }
 
             header {
                 flex-direction: column;
-                gap: 15px;
+                align-items: flex-start;
             }
         }
     </style>
 </head>
 <body>
     <!-- Login Screen -->
-    <div class="login-container" id="loginContainer">
-        <h1>🏢 Property Management</h1>
-        <div class="form-group">
-            <label>Username</label>
-            <input type="text" id="username" placeholder="Enter username">
+    <div class="login-screen" id="loginScreen">
+        <div class="login-box">
+            <h1>🏢 Property Management</h1>
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="username" placeholder="Enter username">
+            </div>
+            <div class="form-group">
+                <label>PIN</label>
+                <input type="password" id="pin" placeholder="Enter PIN">
+            </div>
+            <div class="form-group">
+                <label>Role</label>
+                <select id="roleSelect">
+                    <option value="admin">Admin</option>
+                    <option value="manager">Manager</option>
+                    <option value="viewer">Viewer</option>
+                </select>
+            </div>
+            <button class="btn" onclick="login()">Login</button>
+            <p style="text-align: center; margin-top: 15px; color: #7a899c; font-size: 11px;">
+                Demo: Admin/1234, Manager/5678, Viewer/0000
+            </p>
         </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" id="password" placeholder="Enter password">
-        </div>
-        <div class="form-group">
-            <label>Role</label>
-            <select id="roleSelect">
-                <option value="admin">Admin</option>
-                <option value="manager">Manager</option>
-                <option value="accountant">Accountant</option>
-                <option value="tenant">Tenant</option>
-            </select>
-        </div>
-        <button onclick="login()">Login</button>
-        <p style="text-align: center; margin-top: 20px; color: #666; font-size: 12px;">
-            Demo: Use any username/password combination
-        </p>
     </div>
 
     <!-- Main Application -->
-    <div class="container" id="mainContainer">
+    <div class="app-container" id="appContainer">
         <header>
-            <h1>🏢 Advanced Property Management System</h1>
+            <div class="logo">🏢 Property Management System</div>
             <div class="user-info">
                 <span id="userDisplay"></span>
                 <button class="logout-btn" onclick="logout()">Logout</button>
             </div>
         </header>
 
-        <div class="sidebar">
-            <button class="tab-button active" onclick="switchTab(event, 'dashboard')">📊 Dashboard</button>
-            <button class="tab-button" onclick="switchTab(event, 'properties')">🏠 Properties</button>
-            <button class="tab-button" onclick="switchTab(event, 'tenants')">👥 Tenants</button>
-            <button class="tab-button" onclick="switchTab(event, 'rent')">💳 Rent Management</button>
-            <button class="tab-button" onclick="switchTab(event, 'leases')">📋 Leases</button>
-            <button class="tab-button" onclick="switchTab(event, 'maintenance')">🔧 Maintenance</button>
-            <button class="tab-button" onclick="switchTab(event, 'complaints')">📞 Complaints</button>
-            <button class="tab-button" onclick="switchTab(event, 'finances')">💰 Finances</button>
-            <button class="tab-button" onclick="switchTab(event, 'reports')">📈 Reports</button>
-            <button class="tab-button" onclick="switchTab(event, 'export')">💾 Export Data</button>
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab(event, 'dashboard')">📊 Dashboard</button>
+            <button class="tab-btn" onclick="switchTab(event, 'townships')">🏘️ Townships</button>
+            <button class="tab-btn" onclick="switchTab(event, 'properties')">🏠 Properties</button>
+            <button class="tab-btn" onclick="switchTab(event, 'tenants')">👥 Tenants</button>
+            <button class="tab-btn" onclick="switchTab(event, 'payments')">💳 Payments</button>
+            <button class="tab-btn" onclick="switchTab(event, 'expenditures')">💰 Expenditures</button>
+            <button class="tab-btn" onclick="switchTab(event, 'settlement')">📋 Settlement</button>
+            <button class="tab-btn" onclick="switchTab(event, 'reports')">📈 Reports</button>
+            <button class="tab-btn" onclick="switchTab(event, 'export')">💾 Export</button>
         </div>
 
         <div class="content">
             <!-- Dashboard -->
             <div id="dashboard" class="tab-content active">
-                <h2>Dashboard Overview</h2>
+                <h2 style="color: #d4a928; margin-bottom: 20px;">Dashboard Overview</h2>
                 <div class="grid">
                     <div class="card">
-                        <h3>🏠 Total Properties</h3>
-                        <p class="stat-value" id="totalProperties">0</p>
+                        <h3>🏘️ Townships</h3>
+                        <div class="stat-value" id="totalTownships">0</div>
                     </div>
                     <div class="card">
-                        <h3>👥 Total Tenants</h3>
-                        <p class="stat-value" id="totalTenants">0</p>
+                        <h3>🏠 Properties</h3>
+                        <div class="stat-value" id="totalProperties">0</div>
                     </div>
                     <div class="card">
-                        <h3>💵 Monthly Revenue</h3>
-                        <p class="stat-value" id="monthlyRevenue">₹0</p>
+                        <h3>👥 Tenants</h3>
+                        <div class="stat-value" id="totalTenants">0</div>
                     </div>
                     <div class="card">
-                        <h3>⚠️ Overdue Rent</h3>
-                        <p class="stat-value" id="overdueRent">₹0</p>
+                        <h3>💵 Total Revenue</h3>
+                        <div class="stat-value" id="totalRevenue">₹0</div>
                     </div>
                     <div class="card">
-                        <h3>🔧 Pending Maintenance</h3>
-                        <p class="stat-value" id="pendingMaintenance">0</p>
+                        <h3>📊 Total Expenses</h3>
+                        <div class="stat-value" id="totalExpenses">₹0</div>
                     </div>
                     <div class="card">
-                        <h3>📞 Open Complaints</h3>
-                        <p class="stat-value" id="openComplaints">0</p>
+                        <h3>📈 Net Profit</h3>
+                        <div class="stat-value" id="netProfit">₹0</div>
                     </div>
                 </div>
                 <div class="chart-container">
-                    <canvas id="incomeChart"></canvas>
+                    <canvas id="dashboardChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Townships -->
+            <div id="townships" class="tab-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 style="color: #d4a928;">Township Management</h2>
+                    <button class="btn-small" onclick="openModal('township')" style="background: #d4a928; color: #080d16; padding: 8px 16px;">+ Add Township</button>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Location</th>
+                                <th>Properties</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="townshipTable"></tbody>
+                    </table>
                 </div>
             </div>
 
             <!-- Properties -->
             <div id="properties" class="tab-content">
-                <h2>Property Management</h2>
-                <div class="success-message" id="propertySuccess">Property added successfully!</div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Property ID</label>
-                        <input type="text" id="propertyId" placeholder="e.g., A-101">
-                    </div>
-                    <div class="form-group">
-                        <label>Property Type</label>
-                        <select id="propertyType">
-                            <option>Residential</option>
-                            <option>Commercial</option>
-                            <option>Industrial</option>
-                        </select>
-                    </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 style="color: #d4a928;">Property Management</h2>
+                    <button class="btn-small" onclick="openModal('property')" style="background: #d4a928; color: #080d16; padding: 8px 16px;">+ Add Property</button>
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Area (sq.ft)</label>
-                        <input type="number" id="propertyArea" placeholder="Enter area">
-                    </div>
-                    <div class="form-group">
-                        <label>Status</label>
-                        <select id="propertyStatus">
-                            <option>Available</option>
-                            <option>Occupied</option>
-                            <option>Under Maintenance</option>
-                        </select>
-                    </div>
-                </div>
-                <button onclick="addProperty()">Add Property</button>
-
                 <div class="table-container">
                     <table>
                         <thead>
                             <tr>
-                                <th>Property ID</th>
+                                <th>Name</th>
+                                <th>Township</th>
                                 <th>Type</th>
-                                <th>Area (sq.ft)</th>
-                                <th>Status</th>
+                                <th>Area</th>
+                                <th>Tenants</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -466,41 +523,21 @@
 
             <!-- Tenants -->
             <div id="tenants" class="tab-content">
-                <h2>Tenant Management</h2>
-                <div class="success-message" id="tenantSuccess">Tenant added successfully!</div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Tenant Name</label>
-                        <input type="text" id="tenantName" placeholder="Enter name">
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" id="tenantEmail" placeholder="Enter email">
-                    </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 style="color: #d4a928;">Tenant Management</h2>
+                    <button class="btn-small" onclick="openModal('tenant')" style="background: #d4a928; color: #080d16; padding: 8px 16px;">+ Add Tenant</button>
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Phone</label>
-                        <input type="tel" id="tenantPhone" placeholder="Enter phone">
-                    </div>
-                    <div class="form-group">
-                        <label>Property Assigned</label>
-                        <select id="tenantProperty">
-                            <option value="">Select property</option>
-                        </select>
-                    </div>
-                </div>
-                <button onclick="addTenant()">Add Tenant</button>
-
                 <div class="table-container">
                     <table>
                         <thead>
                             <tr>
-                                <th>Tenant Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
+                                <th>Name</th>
                                 <th>Property</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Rent</th>
+                                <th>Status</th>
+                                <th>Pending</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -509,982 +546,790 @@
                 </div>
             </div>
 
-            <!-- Rent Management -->
-            <div id="rent" class="tab-content">
-                <h2>Rent Management</h2>
-                <div class="success-message" id="rentSuccess">Rent record added successfully!</div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Tenant</label>
-                        <select id="rentTenant">
-                            <option value="">Select tenant</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Monthly Rent (₹)</label>
-                        <input type="number" id="rentAmount" placeholder="Enter rent amount">
-                    </div>
+            <!-- Payments -->
+            <div id="payments" class="tab-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 style="color: #d4a928;">Payment Records</h2>
+                    <button class="btn-small" onclick="openModal('payment')" style="background: #d4a928; color: #080d16; padding: 8px 16px;">+ Add Payment</button>
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Due Date</label>
-                        <input type="date" id="rentDueDate">
-                    </div>
-                    <div class="form-group">
-                        <label>Payment Status</label>
-                        <select id="rentStatus">
-                            <option>Pending</option>
-                            <option>Paid</option>
-                            <option>Overdue</option>
-                        </select>
-                    </div>
-                </div>
-                <button onclick="addRent()">Add Rent Record</button>
-
                 <div class="table-container">
                     <table>
                         <thead>
                             <tr>
                                 <th>Tenant</th>
-                                <th>Amount (₹)</th>
-                                <th>Due Date</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="rentTable"></tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Leases -->
-            <div id="leases" class="tab-content">
-                <h2>Lease Management</h2>
-                <div class="success-message" id="leaseSuccess">Lease added successfully!</div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Tenant</label>
-                        <select id="leaseTenant">
-                            <option value="">Select tenant</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Property</label>
-                        <select id="leaseProperty">
-                            <option value="">Select property</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Start Date</label>
-                        <input type="date" id="leaseStart">
-                    </div>
-                    <div class="form-group">
-                        <label>End Date</label>
-                        <input type="date" id="leaseEnd">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Monthly Rent (₹)</label>
-                        <input type="number" id="leaseRent" placeholder="Enter monthly rent">
-                    </div>
-                    <div class="form-group">
-                        <label>Security Deposit (₹)</label>
-                        <input type="number" id="leaseDeposit" placeholder="Enter deposit amount">
-                    </div>
-                </div>
-                <button onclick="addLease()">Add Lease</button>
-
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Tenant</th>
-                                <th>Property</th>
-                                <th>Start Date</th>
-                                <th>End Date</th>
-                                <th>Monthly Rent</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody id="leaseTable"></tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Maintenance -->
-            <div id="maintenance" class="tab-content">
-                <h2>Maintenance & Work Orders</h2>
-                <div class="success-message" id="maintenanceSuccess">Maintenance record added!</div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Property</label>
-                        <select id="maintenanceProperty">
-                            <option value="">Select property</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Issue Type</label>
-                        <select id="maintenanceType">
-                            <option>Plumbing</option>
-                            <option>Electrical</option>
-                            <option>Carpentry</option>
-                            <option>Painting</option>
-                            <option>Cleaning</option>
-                            <option>Other</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Priority</label>
-                        <select id="maintenancePriority">
-                            <option>Low</option>
-                            <option>Medium</option>
-                            <option>High</option>
-                            <option>Urgent</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Estimated Cost (₹)</label>
-                        <input type="number" id="maintenanceCost" placeholder="Enter cost">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Description</label>
-                    <textarea id="maintenanceDesc" placeholder="Describe the issue" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; min-height: 100px;"></textarea>
-                </div>
-                <button onclick="addMaintenance()">Add Maintenance Request</button>
-
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Property</th>
-                                <th>Type</th>
-                                <th>Priority</th>
-                                <th>Cost (₹)</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="maintenanceTable"></tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Complaints -->
-            <div id="complaints" class="tab-content">
-                <h2>Complaint Management</h2>
-                <div class="success-message" id="complaintSuccess">Complaint registered!</div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Tenant</label>
-                        <select id="complaintTenant">
-                            <option value="">Select tenant</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Priority</label>
-                        <select id="complaintPriority">
-                            <option>Low</option>
-                            <option>Medium</option>
-                            <option>High</option>
-                            <option>Urgent</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Complaint Description</label>
-                    <textarea id="complaintDesc" placeholder="Describe the complaint" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; min-height: 100px;"></textarea>
-                </div>
-                <button onclick="addComplaint()">Register Complaint</button>
-
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Tenant</th>
-                                <th>Priority</th>
-                                <th>Description</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="complaintTable"></tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Finances -->
-            <div id="finances" class="tab-content">
-                <h2>Financial Management</h2>
-                <div class="success-message" id="financeSuccess">Transaction recorded!</div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Transaction Type</label>
-                        <select id="financeType">
-                            <option>Rent Income</option>
-                            <option>Maintenance Expense</option>
-                            <option>Utility Expense</option>
-                            <option>Tax Expense</option>
-                            <option>Other Expense</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Amount (₹)</label>
-                        <input type="number" id="financeAmount" placeholder="Enter amount">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Date</label>
-                        <input type="date" id="financeDate">
-                    </div>
-                    <div class="form-group">
-                        <label>Description</label>
-                        <input type="text" id="financeDesc" placeholder="Enter description">
-                    </div>
-                </div>
-                <button onclick="addFinance()">Record Transaction</button>
-
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Type</th>
-                                <th>Amount (₹)</th>
+                                <th>Amount</th>
                                 <th>Date</th>
-                                <th>Description</th>
+                                <th>Received By</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody id="financeTable"></tbody>
+                        <tbody id="paymentTable"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Expenditures -->
+            <div id="expenditures" class="tab-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 style="color: #d4a928;">Expenditure Records</h2>
+                    <button class="btn-small" onclick="openModal('expenditure')" style="background: #d4a928; color: #080d16; padding: 8px 16px;">+ Add Expenditure</button>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Description</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>Paid By</th>
+                                <th>Category</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="expenditureTable"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Settlement -->
+            <div id="settlement" class="tab-content">
+                <h2 style="color: #d4a928; margin-bottom: 20px;">Partner Settlement</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                    <div class="card">
+                        <h3>Total Revenue</h3>
+                        <div class="stat-value" id="settlementRevenue">₹0</div>
+                    </div>
+                    <div class="card">
+                        <h3>Total Expenses</h3>
+                        <div class="stat-value" id="settlementExpenses">₹0</div>
+                    </div>
+                    <div class="card">
+                        <h3>Net Amount</h3>
+                        <div class="stat-value" id="settlementNet">₹0</div>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Partner</th>
+                                <th>Share %</th>
+                                <th>Revenue Share</th>
+                                <th>Expense Share</th>
+                                <th>Received</th>
+                                <th>Paid</th>
+                                <th>Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody id="settlementTable"></tbody>
+                    </table>
+                </div>
+                <h3 style="color: #d4a928; margin-top: 30px; margin-bottom: 15px;">Settlement Transactions</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="settlementTxnTable"></tbody>
                     </table>
                 </div>
             </div>
 
             <!-- Reports -->
             <div id="reports" class="tab-content">
-                <h2>Financial Reports & Analytics</h2>
-                
-                <div style="margin: 20px 0;">
-                    <h3>Monthly Income vs Expense</h3>
-                    <div class="chart-container">
-                        <canvas id="reportChart"></canvas>
-                    </div>
+                <h2 style="color: #d4a928; margin-bottom: 20px;">Financial Reports</h2>
+                <div class="chart-container">
+                    <canvas id="reportsChart"></canvas>
                 </div>
-
-                <div class="grid">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
                     <div class="card">
-                        <h3>Total Income</h3>
-                        <p class="stat-value" id="totalIncome">₹0</p>
+                        <h3>Total Payments Received</h3>
+                        <div class="stat-value" id="reportTotalPayments">₹0</div>
                     </div>
                     <div class="card">
-                        <h3>Total Expense</h3>
-                        <p class="stat-value" id="totalExpense">₹0</p>
+                        <h3>Total Expenditures</h3>
+                        <div class="stat-value" id="reportTotalExpenditure">₹0</div>
                     </div>
-                    <div class="card">
-                        <h3>Net Profit</h3>
-                        <p class="stat-value" id="netProfit">₹0</p>
-                    </div>
-                </div>
-
-                <h3 style="margin-top: 30px;">Occupancy Report</h3>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Property</th>
-                                <th>Status</th>
-                                <th>Tenant</th>
-                                <th>Monthly Rent</th>
-                            </tr>
-                        </thead>
-                        <tbody id="occupancyTable"></tbody>
-                    </table>
                 </div>
             </div>
 
-            <!-- Export Data -->
+            <!-- Export -->
             <div id="export" class="tab-content">
-                <h2>Data Export & Backup</h2>
-                
+                <h2 style="color: #d4a928; margin-bottom: 20px;">Data Export & Backup</h2>
                 <div class="grid">
                     <div class="card">
                         <h3>📊 Export as CSV</h3>
-                        <p>Export all data to CSV format for Excel</p>
-                        <button class="btn-small" onclick="exportToCSV()" style="width: 100%; margin-top: 10px;">Export CSV</button>
+                        <p style="color: #7a899c; font-size: 12px; margin: 10px 0;">Export all data to CSV format</p>
+                        <button class="btn-small" onclick="exportToCSV()" style="width: 100%; background: #d4a928; color: #080d16;">Export CSV</button>
                     </div>
                     <div class="card">
                         <h3>💾 Backup Data</h3>
-                        <p>Download complete backup of all data</p>
-                        <button class="btn-small" onclick="backupData()" style="width: 100%; margin-top: 10px;">Backup</button>
+                        <p style="color: #7a899c; font-size: 12px; margin: 10px 0;">Download complete data backup</p>
+                        <button class="btn-small" onclick="backupData()" style="width: 100%; background: #d4a928; color: #080d16;">Backup</button>
                     </div>
                     <div class="card">
                         <h3>📥 Restore Data</h3>
-                        <p>Restore data from backup file</p>
+                        <p style="color: #7a899c; font-size: 12px; margin: 10px 0;">Restore from backup file</p>
+                        <button class="btn-small" onclick="document.getElementById('restoreFile').click()" style="width: 100%; background: #d4a928; color: #080d16;">Restore</button>
                         <input type="file" id="restoreFile" accept=".json" style="display: none;">
-                        <button class="btn-small" onclick="document.getElementById('restoreFile').click()" style="width: 100%; margin-top: 10px;">Restore</button>
-                    </div>
-                </div>
-
-                <div style="margin-top: 30px;">
-                    <h3>Data Summary</h3>
-                    <div class="table-container">
-                        <table>
-                            <tr>
-                                <td><strong>Total Properties:</strong></td>
-                                <td id="exportProperties">0</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Total Tenants:</strong></td>
-                                <td id="exportTenants">0</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Total Leases:</strong></td>
-                                <td id="exportLeases">0</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Total Rent Records:</strong></td>
-                                <td id="exportRents">0</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Total Transactions:</strong></td>
-                                <td id="exportTransactions">0</td>
-                            </tr>
-                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        // Data storage
-        const data = {
-            properties: [],
-            tenants: [],
-            rent: [],
-            leases: [],
-            maintenance: [],
-            complaints: [],
-            finances: []
-        };
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Modal</h2>
+                <button class="close-btn" onclick="closeModal()">×</button>
+            </div>
+            <div id="modalBody"></div>
+        </div>
+    </div>
 
+    <script>
+        // Data Storage
+        const SK = "pms-v8";
+        let DB = {};
         let currentUser = null;
         let currentRole = null;
+        let permissions = {};
 
-        // Load data from localStorage
-        function loadData() {
-            const saved = localStorage.getItem('pmsData');
-            if (saved) {
-                Object.assign(data, JSON.parse(saved));
-            }
+        const PERMS = {
+            admin: { create: 1, edit: 1, delete: 1, view: 1 },
+            manager: { create: 1, edit: 1, delete: 0, view: 1 },
+            viewer: { create: 0, edit: 0, delete: 0, view: 1 }
+        };
+
+        const DEMO_USERS = [
+            { id: "a1", name: "Admin", pin: "1234", role: "admin" },
+            { id: "m1", name: "Manager", pin: "5678", role: "manager" },
+            { id: "v1", name: "Viewer", pin: "0000", role: "viewer" }
+        ];
+
+        // Initialize
+        function initDB() {
+            DB = {
+                townships: [],
+                properties: [],
+                tenants: [],
+                payments: [],
+                expenditures: [],
+                partners: []
+            };
+            localStorage.setItem(SK, JSON.stringify(DB));
         }
 
-        // Save data to localStorage
-        function saveData() {
-            localStorage.setItem('pmsData', JSON.stringify(data));
+        function loadDB() {
+            const saved = localStorage.getItem(SK);
+            DB = saved ? JSON.parse(saved) : {};
+            if (!DB.townships) initDB();
+        }
+
+        function saveDB() {
+            localStorage.setItem(SK, JSON.stringify(DB));
         }
 
         // Login
         function login() {
             const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+            const pin = document.getElementById('pin').value;
             const role = document.getElementById('roleSelect').value;
 
-            if (!username || !password) {
-                alert('Please enter username and password');
+            const user = DEMO_USERS.find(u => u.name === username && u.pin === pin && u.role === role);
+            
+            if (!user) {
+                alert('Invalid credentials');
                 return;
             }
 
-            currentUser = username;
+            currentUser = user;
             currentRole = role;
+            permissions = PERMS[role];
 
-            document.getElementById('loginContainer').style.display = 'none';
-            document.getElementById('mainContainer').classList.add('logged-in');
-            document.getElementById('userDisplay').textContent = `${username} (${role.toUpperCase()})`;
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('appContainer').classList.add('visible');
+            document.getElementById('userDisplay').textContent = `${user.name} (${role.toUpperCase()})`;
 
-            loadData();
+            loadDB();
             updateAllDashboards();
-            populateSelects();
         }
 
         // Logout
         function logout() {
             currentUser = null;
             currentRole = null;
-            document.getElementById('loginContainer').style.display = 'block';
-            document.getElementById('mainContainer').classList.remove('logged-in');
+            document.getElementById('loginScreen').classList.remove('hidden');
+            document.getElementById('appContainer').classList.remove('visible');
             document.getElementById('username').value = '';
-            document.getElementById('password').value = '';
+            document.getElementById('pin').value = '';
         }
 
-        // Tab switching
+        // Tab Switching
         function switchTab(event, tabName) {
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById(tabName).classList.add('active');
             event.target.classList.add('active');
 
             if (tabName === 'reports') {
-                setTimeout(() => {
-                    updateReportsChart();
-                }, 100);
+                setTimeout(() => updateReportsChart(), 100);
             }
             if (tabName === 'dashboard') {
-                setTimeout(() => {
-                    updateIncomeChart();
-                }, 100);
+                setTimeout(() => updateDashboardChart(), 100);
             }
         }
 
-        // Add Property
-        function addProperty() {
-            const property = {
-                id: Date.now(),
-                propertyId: document.getElementById('propertyId').value,
-                type: document.getElementById('propertyType').value,
-                area: document.getElementById('propertyArea').value,
-                status: document.getElementById('propertyStatus').value
-            };
+        // Modal Functions
+        function openModal(type) {
+            const modal = document.getElementById('modal');
+            const title = document.getElementById('modalTitle');
+            const body = document.getElementById('modalBody');
 
-            if (property.propertyId && property.area) {
-                data.properties.push(property);
-                saveData();
-                updatePropertyTable();
-                document.getElementById('propertyId').value = '';
-                document.getElementById('propertyArea').value = '';
-                showSuccess('propertySuccess');
-                updateAllDashboards();
-                populateSelects();
-            } else {
-                alert('Please fill all fields');
+            if (type === 'township') {
+                title.textContent = 'Add Township';
+                body.innerHTML = `
+                    <div class="form-group">
+                        <label>Township Name *</label>
+                        <input type="text" id="twName" placeholder="Enter township name">
+                    </div>
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input type="text" id="twLocation" placeholder="Enter location">
+                    </div>
+                    <button class="btn" onclick="saveTownship()">Save Township</button>
+                `;
+            } else if (type === 'property') {
+                title.textContent = 'Add Property';
+                body.innerHTML = `
+                    <div class="form-group">
+                        <label>Township *</label>
+                        <select id="propTownship">
+                            <option value="">Select Township</option>
+                            ${DB.townships.map(t => `<option value="${t.id}">${t.name}</option>`).join('')}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Property Name *</label>
+                        <input type="text" id="propName" placeholder="Enter property name">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Type</label>
+                            <select id="propType">
+                                <option>Residential</option>
+                                <option>Commercial</option>
+                                <option>Industrial</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Area (sq.ft)</label>
+                            <input type="number" id="propArea" placeholder="Enter area">
+                        </div>
+                    </div>
+                    <button class="btn" onclick="saveProperty()">Save Property</button>
+                `;
+            } else if (type === 'tenant') {
+                title.textContent = 'Add Tenant';
+                body.innerHTML = `
+                    <div class="form-group">
+                        <label>Property *</label>
+                        <select id="tenProperty">
+                            <option value="">Select Property</option>
+                            ${DB.properties.map(p => `<option value="${p.id}">${p.name}</option>`).join('')}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Tenant Name *</label>
+                        <input type="text" id="tenName" placeholder="Enter tenant name">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Start Date *</label>
+                            <input type="date" id="tenStart">
+                        </div>
+                        <div class="form-group">
+                            <label>End Date</label>
+                            <input type="date" id="tenEnd">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Monthly Rent ₹ *</label>
+                            <input type="number" id="tenRent" placeholder="Enter monthly rent">
+                        </div>
+                        <div class="form-group">
+                            <label>Increment % (yearly)</label>
+                            <input type="number" id="tenIncrement" placeholder="e.g., 10" value="10">
+                        </div>
+                    </div>
+                    <button class="btn" onclick="saveTenant()">Save Tenant</button>
+                `;
+            } else if (type === 'payment') {
+                title.textContent = 'Add Payment';
+                body.innerHTML = `
+                    <div class="form-group">
+                        <label>Tenant *</label>
+                        <select id="payTenant">
+                            <option value="">Select Tenant</option>
+                            ${DB.tenants.map(t => `<option value="${t.id}">${t.name}</option>`).join('')}
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Amount ₹ *</label>
+                            <input type="number" id="payAmount" placeholder="Enter amount">
+                        </div>
+                        <div class="form-group">
+                            <label>Date *</label>
+                            <input type="date" id="payDate">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Received By</label>
+                        <input type="text" id="payReceivedBy" placeholder="Enter name">
+                    </div>
+                    <button class="btn" onclick="savePayment()">Save Payment</button>
+                `;
+            } else if (type === 'expenditure') {
+                title.textContent = 'Add Expenditure';
+                body.innerHTML = `
+                    <div class="form-group">
+                        <label>Description *</label>
+                        <input type="text" id="expDesc" placeholder="Enter description">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Amount ₹ *</label>
+                            <input type="number" id="expAmount" placeholder="Enter amount">
+                        </div>
+                        <div class="form-group">
+                            <label>Date *</label>
+                            <input type="date" id="expDate">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="expCategory">
+                            <option>Maintenance</option>
+                            <option>Utilities</option>
+                            <option>Staff</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <button class="btn" onclick="saveExpenditure()">Save Expenditure</button>
+                `;
             }
+
+            modal.classList.add('show');
         }
 
-        // Add Tenant
-        function addTenant() {
-            const tenant = {
-                id: Date.now(),
-                name: document.getElementById('tenantName').value,
-                email: document.getElementById('tenantEmail').value,
-                phone: document.getElementById('tenantPhone').value,
-                property: document.getElementById('tenantProperty').value
-            };
-
-            if (tenant.name && tenant.email && tenant.phone) {
-                data.tenants.push(tenant);
-                saveData();
-                updateTenantTable();
-                document.getElementById('tenantName').value = '';
-                document.getElementById('tenantEmail').value = '';
-                document.getElementById('tenantPhone').value = '';
-                showSuccess('tenantSuccess');
-                updateAllDashboards();
-                populateSelects();
-            } else {
-                alert('Please fill all fields');
-            }
+        function closeModal() {
+            document.getElementById('modal').classList.remove('show');
         }
 
-        // Add Rent
-        function addRent() {
-            const rent = {
-                id: Date.now(),
-                tenant: document.getElementById('rentTenant').value,
-                amount: parseFloat(document.getElementById('rentAmount').value),
-                dueDate: document.getElementById('rentDueDate').value,
-                status: document.getElementById('rentStatus').value
-            };
+        // Save Functions
+        function saveTownship() {
+            const name = document.getElementById('twName').value;
+            const location = document.getElementById('twLocation').value;
 
-            if (rent.tenant && rent.amount && rent.dueDate) {
-                data.rent.push(rent);
-                saveData();
-                updateRentTable();
-                document.getElementById('rentAmount').value = '';
-                document.getElementById('rentDueDate').value = '';
-                showSuccess('rentSuccess');
-                updateAllDashboards();
-            } else {
-                alert('Please fill all fields');
+            if (!name) {
+                alert('Please enter township name');
+                return;
             }
+
+            DB.townships.push({
+                id: Date.now().toString(),
+                name,
+                location
+            });
+
+            saveDB();
+            updateAllDashboards();
+            closeModal();
         }
 
-        // Add Lease
-        function addLease() {
-            const lease = {
-                id: Date.now(),
-                tenant: document.getElementById('leaseTenant').value,
-                property: document.getElementById('leaseProperty').value,
-                startDate: document.getElementById('leaseStart').value,
-                endDate: document.getElementById('leaseEnd').value,
-                monthlyRent: parseFloat(document.getElementById('leaseRent').value),
-                deposit: parseFloat(document.getElementById('leaseDeposit').value)
-            };
+        function saveProperty() {
+            const townshipId = document.getElementById('propTownship').value;
+            const name = document.getElementById('propName').value;
+            const type = document.getElementById('propType').value;
+            const area = document.getElementById('propArea').value;
 
-            if (lease.tenant && lease.property && lease.startDate && lease.endDate && lease.monthlyRent) {
-                data.leases.push(lease);
-                saveData();
-                updateLeaseTable();
-                document.getElementById('leaseRent').value = '';
-                document.getElementById('leaseDeposit').value = '';
-                showSuccess('leaseSuccess');
-                updateAllDashboards();
-            } else {
-                alert('Please fill all fields');
+            if (!townshipId || !name) {
+                alert('Please fill required fields');
+                return;
             }
+
+            DB.properties.push({
+                id: Date.now().toString(),
+                townshipId,
+                name,
+                type,
+                area
+            });
+
+            saveDB();
+            updateAllDashboards();
+            closeModal();
         }
 
-        // Add Maintenance
-        function addMaintenance() {
-            const maintenance = {
-                id: Date.now(),
-                property: document.getElementById('maintenanceProperty').value,
-                type: document.getElementById('maintenanceType').value,
-                priority: document.getElementById('maintenancePriority').value,
-                cost: parseFloat(document.getElementById('maintenanceCost').value),
-                description: document.getElementById('maintenanceDesc').value,
-                status: 'Open',
-                date: new Date().toISOString().split('T')[0]
-            };
+        function saveTenant() {
+            const propertyId = document.getElementById('tenProperty').value;
+            const name = document.getElementById('tenName').value;
+            const startDate = document.getElementById('tenStart').value;
+            const monthlyRent = document.getElementById('tenRent').value;
+            const incrementPercent = document.getElementById('tenIncrement').value;
+            const endDate = document.getElementById('tenEnd').value;
 
-            if (maintenance.property && maintenance.type && maintenance.cost) {
-                data.maintenance.push(maintenance);
-                saveData();
-                updateMaintenanceTable();
-                document.getElementById('maintenanceCost').value = '';
-                document.getElementById('maintenanceDesc').value = '';
-                showSuccess('maintenanceSuccess');
-                updateAllDashboards();
-            } else {
-                alert('Please fill all fields');
+            if (!propertyId || !name || !startDate || !monthlyRent) {
+                alert('Please fill required fields');
+                return;
             }
+
+            DB.tenants.push({
+                id: Date.now().toString(),
+                propertyId,
+                name,
+                startDate,
+                endDate,
+                monthlyRent: parseFloat(monthlyRent),
+                incrementPercent: parseFloat(incrementPercent) || 10,
+                incrementEveryMonths: 12
+            });
+
+            saveDB();
+            updateAllDashboards();
+            closeModal();
         }
 
-        // Add Complaint
-        function addComplaint() {
-            const complaint = {
-                id: Date.now(),
-                tenant: document.getElementById('complaintTenant').value,
-                priority: document.getElementById('complaintPriority').value,
-                description: document.getElementById('complaintDesc').value,
-                status: 'Open',
-                date: new Date().toISOString().split('T')[0]
-            };
+        function savePayment() {
+            const tenantId = document.getElementById('payTenant').value;
+            const amount = document.getElementById('payAmount').value;
+            const date = document.getElementById('payDate').value;
+            const receivedBy = document.getElementById('payReceivedBy').value;
 
-            if (complaint.tenant && complaint.description) {
-                data.complaints.push(complaint);
-                saveData();
-                updateComplaintTable();
-                document.getElementById('complaintDesc').value = '';
-                showSuccess('complaintSuccess');
-                updateAllDashboards();
-            } else {
-                alert('Please fill all fields');
+            if (!tenantId || !amount || !date) {
+                alert('Please fill required fields');
+                return;
             }
+
+            DB.payments.push({
+                id: Date.now().toString(),
+                tenantId,
+                amount: parseFloat(amount),
+                date,
+                receivedBy
+            });
+
+            saveDB();
+            updateAllDashboards();
+            closeModal();
         }
 
-        // Add Finance
-        function addFinance() {
-            const finance = {
-                id: Date.now(),
-                type: document.getElementById('financeType').value,
-                amount: parseFloat(document.getElementById('financeAmount').value),
-                date: document.getElementById('financeDate').value,
-                description: document.getElementById('financeDesc').value
-            };
+        function saveExpenditure() {
+            const description = document.getElementById('expDesc').value;
+            const amount = document.getElementById('expAmount').value;
+            const date = document.getElementById('expDate').value;
+            const category = document.getElementById('expCategory').value;
 
-            if (finance.type && finance.amount && finance.date) {
-                data.finances.push(finance);
-                saveData();
-                updateFinanceTable();
-                document.getElementById('financeAmount').value = '';
-                document.getElementById('financeDesc').value = '';
-                showSuccess('financeSuccess');
-                updateAllDashboards();
-            } else {
-                alert('Please fill all fields');
+            if (!description || !amount || !date) {
+                alert('Please fill required fields');
+                return;
             }
+
+            DB.expenditures.push({
+                id: Date.now().toString(),
+                description,
+                amount: parseFloat(amount),
+                date,
+                category
+            });
+
+            saveDB();
+            updateAllDashboards();
+            closeModal();
         }
 
-        // Update Tables
+        // Update Functions
+        function updateAllDashboards() {
+            updateTownshipTable();
+            updatePropertyTable();
+            updateTenantTable();
+            updatePaymentTable();
+            updateExpenditureTable();
+            updateSettlement();
+            updateDashboardStats();
+        }
+
+        function updateDashboardStats() {
+            document.getElementById('totalTownships').textContent = DB.townships.length;
+            document.getElementById('totalProperties').textContent = DB.properties.length;
+            document.getElementById('totalTenants').textContent = DB.tenants.length;
+
+            const totalRevenue = DB.payments.reduce((sum, p) => sum + p.amount, 0);
+            const totalExpenses = DB.expenditures.reduce((sum, e) => sum + e.amount, 0);
+
+            document.getElementById('totalRevenue').textContent = '₹' + totalRevenue.toLocaleString();
+            document.getElementById('totalExpenses').textContent = '₹' + totalExpenses.toLocaleString();
+            document.getElementById('netProfit').textContent = '₹' + (totalRevenue - totalExpenses).toLocaleString();
+        }
+
+        function updateTownshipTable() {
+            const tbody = document.getElementById('townshipTable');
+            tbody.innerHTML = DB.townships.map(t => {
+                const propCount = DB.properties.filter(p => p.townshipId === t.id).length;
+                return `
+                    <tr>
+                        <td>${t.name}</td>
+                        <td>${t.location || '—'}</td>
+                        <td>${propCount}</td>
+                        <td>
+                            ${permissions.delete ? `<button class="btn-small" onclick="deleteTownship('${t.id}')">Delete</button>` : ''}
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
         function updatePropertyTable() {
             const tbody = document.getElementById('propertyTable');
-            tbody.innerHTML = data.properties.map(p => `
-                <tr>
-                    <td>${p.propertyId}</td>
-                    <td>${p.type}</td>
-                    <td>${p.area}</td>
-                    <td><span class="badge badge-info">${p.status}</span></td>
-                    <td><button class="btn-small" onclick="deleteProperty(${p.id})">Delete</button></td>
-                </tr>
-            `).join('');
+            tbody.innerHTML = DB.properties.map(p => {
+                const tw = DB.townships.find(t => t.id === p.townshipId);
+                const tenantCount = DB.tenants.filter(t => t.propertyId === p.id).length;
+                return `
+                    <tr>
+                        <td>${p.name}</td>
+                        <td>${tw ? tw.name : '—'}</td>
+                        <td>${p.type}</td>
+                        <td>${p.area || '—'}</td>
+                        <td>${tenantCount}</td>
+                        <td>
+                            ${permissions.delete ? `<button class="btn-small" onclick="deleteProperty('${p.id}')">Delete</button>` : ''}
+                        </td>
+                    </tr>
+                `;
+            }).join('');
         }
 
         function updateTenantTable() {
             const tbody = document.getElementById('tenantTable');
-            tbody.innerHTML = data.tenants.map(t => `
-                <tr>
-                    <td>${t.name}</td>
-                    <td>${t.email}</td>
-                    <td>${t.phone}</td>
-                    <td>${t.property || 'N/A'}</td>
-                    <td><button class="btn-small" onclick="deleteTenant(${t.id})">Delete</button></td>
-                </tr>
-            `).join('');
-        }
+            tbody.innerHTML = DB.tenants.map(t => {
+                const prop = DB.properties.find(p => p.id === t.propertyId);
+                const isActive = !t.endDate || new Date(t.endDate) >= new Date();
+                const payments = DB.payments.filter(p => p.tenantId === t.id).reduce((sum, p) => sum + p.amount, 0);
+                const due = calculateDue(t);
+                const pending = due - payments;
 
-        function updateRentTable() {
-            const tbody = document.getElementById('rentTable');
-            tbody.innerHTML = data.rent.map(r => {
-                const tenant = data.tenants.find(t => t.id == r.tenant);
                 return `
                     <tr>
-                        <td>${tenant ? tenant.name : 'N/A'}</td>
-                        <td>₹${r.amount.toLocaleString()}</td>
-                        <td>${r.dueDate}</td>
-                        <td><span class="badge ${r.status === 'Paid' ? 'badge-success' : r.status === 'Overdue' ? 'badge-danger' : 'badge-warning'}">${r.status}</span></td>
-                        <td><button class="btn-small" onclick="deleteRent(${r.id})">Delete</button></td>
-                    </tr>
-                `;
-            }).join('');
-        }
-
-        function updateLeaseTable() {
-            const tbody = document.getElementById('leaseTable');
-            tbody.innerHTML = data.leases.map(l => {
-                const tenant = data.tenants.find(t => t.id == l.tenant);
-                const property = data.properties.find(p => p.id == l.property);
-                const today = new Date();
-                const endDate = new Date(l.endDate);
-                const status = endDate < today ? 'Expired' : 'Active';
-                return `
-                    <tr>
-                        <td>${tenant ? tenant.name : 'N/A'}</td>
-                        <td>${property ? property.propertyId : 'N/A'}</td>
-                        <td>${l.startDate}</td>
-                        <td>${l.endDate}</td>
-                        <td>₹${l.monthlyRent.toLocaleString()}</td>
-                        <td><span class="badge ${status === 'Active' ? 'badge-success' : 'badge-danger'}">${status}</span></td>
-                    </tr>
-                `;
-            }).join('');
-        }
-
-        function updateMaintenanceTable() {
-            const tbody = document.getElementById('maintenanceTable');
-            tbody.innerHTML = data.maintenance.map(m => {
-                const property = data.properties.find(p => p.id == m.property);
-                return `
-                    <tr>
-                        <td>${property ? property.propertyId : 'N/A'}</td>
-                        <td>${m.type}</td>
-                        <td><span class="badge ${m.priority === 'Urgent' ? 'badge-danger' : m.priority === 'High' ? 'badge-warning' : 'badge-info'}">${m.priority}</span></td>
-                        <td>₹${m.cost.toLocaleString()}</td>
-                        <td><span class="badge badge-info">${m.status}</span></td>
+                        <td>${t.name}</td>
+                        <td>${prop ? prop.name : '—'}</td>
+                        <td>${new Date(t.startDate).toLocaleDateString()}</td>
+                        <td>${t.endDate ? new Date(t.endDate).toLocaleDateString() : '—'}</td>
+                        <td>₹${t.monthlyRent.toLocaleString()}</td>
+                        <td><span class="badge ${isActive ? 'badge-success' : 'badge-danger'}">${isActive ? 'Active' : 'Ended'}</span></td>
+                        <td style="color: ${pending > 0 ? '#f09090' : '#5de0a8'};">₹${pending.toLocaleString()}</td>
                         <td>
-                            <button class="btn-small" onclick="updateMaintenanceStatus(${m.id})">Complete</button>
-                            <button class="btn-small" onclick="deleteMaintenance(${m.id})">Delete</button>
+                            ${permissions.delete ? `<button class="btn-small" onclick="deleteTenant('${t.id}')">Delete</button>` : ''}
                         </td>
                     </tr>
                 `;
             }).join('');
         }
 
-        function updateComplaintTable() {
-            const tbody = document.getElementById('complaintTable');
-            tbody.innerHTML = data.complaints.map(c => {
-                const tenant = data.tenants.find(t => t.id == c.tenant);
+        function updatePaymentTable() {
+            const tbody = document.getElementById('paymentTable');
+            tbody.innerHTML = DB.payments.map(p => {
+                const tenant = DB.tenants.find(t => t.id === p.tenantId);
                 return `
                     <tr>
-                        <td>${tenant ? tenant.name : 'N/A'}</td>
-                        <td><span class="badge ${c.priority === 'Urgent' ? 'badge-danger' : c.priority === 'High' ? 'badge-warning' : 'badge-info'}">${c.priority}</span></td>
-                        <td>${c.description.substring(0, 50)}...</td>
-                        <td><span class="badge badge-info">${c.status}</span></td>
+                        <td>${tenant ? tenant.name : '—'}</td>
+                        <td>₹${p.amount.toLocaleString()}</td>
+                        <td>${new Date(p.date).toLocaleDateString()}</td>
+                        <td>${p.receivedBy || '—'}</td>
                         <td>
-                            <button class="btn-small" onclick="updateComplaintStatus(${c.id})">Resolve</button>
-                            <button class="btn-small" onclick="deleteComplaint(${c.id})">Delete</button>
+                            ${permissions.delete ? `<button class="btn-small" onclick="deletePayment('${p.id}')">Delete</button>` : ''}
                         </td>
                     </tr>
                 `;
             }).join('');
         }
 
-        function updateFinanceTable() {
-            const tbody = document.getElementById('financeTable');
-            tbody.innerHTML = data.finances.map(f => `
+        function updateExpenditureTable() {
+            const tbody = document.getElementById('expenditureTable');
+            tbody.innerHTML = DB.expenditures.map(e => `
                 <tr>
-                    <td>${f.type}</td>
-                    <td>₹${f.amount.toLocaleString()}</td>
-                    <td>${f.date}</td>
-                    <td>${f.description}</td>
+                    <td>${e.description}</td>
+                    <td>₹${e.amount.toLocaleString()}</td>
+                    <td>${new Date(e.date).toLocaleDateString()}</td>
+                    <td>—</td>
+                    <td>${e.category}</td>
+                    <td>
+                        ${permissions.delete ? `<button class="btn-small" onclick="deleteExpenditure('${e.id}')">Delete</button>` : ''}
+                    </td>
                 </tr>
             `).join('');
         }
 
-        function updateOccupancyTable() {
-            const tbody = document.getElementById('occupancyTable');
-            tbody.innerHTML = data.properties.map(p => {
-                const tenant = data.tenants.find(t => t.property == p.id);
-                const lease = data.leases.find(l => l.property == p.id);
-                return `
-                    <tr>
-                        <td>${p.propertyId}</td>
-                        <td><span class="badge badge-info">${p.status}</span></td>
-                        <td>${tenant ? tenant.name : 'Vacant'}</td>
-                        <td>${lease ? '₹' + lease.monthlyRent.toLocaleString() : 'N/A'}</td>
-                    </tr>
-                `;
-            }).join('');
+        function updateSettlement() {
+            const totalRevenue = DB.payments.reduce((sum, p) => sum + p.amount, 0);
+            const totalExpenses = DB.expenditures.reduce((sum, e) => sum + e.amount, 0);
+            const net = totalRevenue - totalExpenses;
+
+            document.getElementById('settlementRevenue').textContent = '₹' + totalRevenue.toLocaleString();
+            document.getElementById('settlementExpenses').textContent = '₹' + totalExpenses.toLocaleString();
+            document.getElementById('settlementNet').textContent = '₹' + net.toLocaleString();
+
+            document.getElementById('settlementTable').innerHTML = '<tr><td colspan="7" style="text-align: center; color: #7a899c;">No partners configured</td></tr>';
+            document.getElementById('settlementTxnTable').innerHTML = '<tr><td colspan="3" style="text-align: center; color: #7a899c;">No transactions</td></tr>';
         }
 
-        // Delete functions
+        // Calculate Functions
+        function calculateDue(tenant) {
+            const start = new Date(tenant.startDate);
+            const end = tenant.endDate ? new Date(tenant.endDate) : new Date();
+            const now = new Date();
+            const eff = end < now ? end : now;
+
+            let due = 0;
+            const d = new Date(start.getFullYear(), start.getMonth(), 1);
+            while (d <= eff) {
+                due += tenant.monthlyRent;
+                d.setMonth(d.getMonth() + 1);
+            }
+            return due;
+        }
+
+        // Delete Functions
+        function deleteTownship(id) {
+            if (confirm('Delete this township?')) {
+                DB.townships = DB.townships.filter(t => t.id !== id);
+                saveDB();
+                updateAllDashboards();
+            }
+        }
+
         function deleteProperty(id) {
-            data.properties = data.properties.filter(p => p.id !== id);
-            saveData();
-            updatePropertyTable();
-            updateAllDashboards();
+            if (confirm('Delete this property?')) {
+                DB.properties = DB.properties.filter(p => p.id !== id);
+                saveDB();
+                updateAllDashboards();
+            }
         }
 
         function deleteTenant(id) {
-            data.tenants = data.tenants.filter(t => t.id !== id);
-            saveData();
-            updateTenantTable();
-            updateAllDashboards();
-        }
-
-        function deleteRent(id) {
-            data.rent = data.rent.filter(r => r.id !== id);
-            saveData();
-            updateRentTable();
-            updateAllDashboards();
-        }
-
-        function deleteMaintenance(id) {
-            data.maintenance = data.maintenance.filter(m => m.id !== id);
-            saveData();
-            updateMaintenanceTable();
-            updateAllDashboards();
-        }
-
-        function deleteComplaint(id) {
-            data.complaints = data.complaints.filter(c => c.id !== id);
-            saveData();
-            updateComplaintTable();
-            updateAllDashboards();
-        }
-
-        function updateMaintenanceStatus(id) {
-            const maintenance = data.maintenance.find(m => m.id === id);
-            if (maintenance) {
-                maintenance.status = 'Completed';
-                saveData();
-                updateMaintenanceTable();
+            if (confirm('Delete this tenant?')) {
+                DB.tenants = DB.tenants.filter(t => t.id !== id);
+                saveDB();
                 updateAllDashboards();
             }
         }
 
-        function updateComplaintStatus(id) {
-            const complaint = data.complaints.find(c => c.id === id);
-            if (complaint) {
-                complaint.status = 'Resolved';
-                saveData();
-                updateComplaintTable();
+        function deletePayment(id) {
+            if (confirm('Delete this payment?')) {
+                DB.payments = DB.payments.filter(p => p.id !== id);
+                saveDB();
                 updateAllDashboards();
             }
         }
 
-        // Populate select dropdowns
-        function populateSelects() {
-            // Tenant selects
-            const tenantOptions = data.tenants.map(t => `<option value="${t.id}">${t.name}</option>`).join('');
-            document.getElementById('rentTenant').innerHTML = '<option value="">Select tenant</option>' + tenantOptions;
-            document.getElementById('leaseTenant').innerHTML = '<option value="">Select tenant</option>' + tenantOptions;
-            document.getElementById('complaintTenant').innerHTML = '<option value="">Select tenant</option>' + tenantOptions;
-
-            // Property selects
-            const propertyOptions = data.properties.map(p => `<option value="${p.id}">${p.propertyId}</option>`).join('');
-            document.getElementById('tenantProperty').innerHTML = '<option value="">Select property</option>' + propertyOptions;
-            document.getElementById('leaseProperty').innerHTML = '<option value="">Select property</option>' + propertyOptions;
-            document.getElementById('maintenanceProperty').innerHTML = '<option value="">Select property</option>' + propertyOptions;
-        }
-
-        // Show success message
-        function showSuccess(elementId) {
-            const element = document.getElementById(elementId);
-            element.classList.add('show');
-            setTimeout(() => element.classList.remove('show'), 3000);
-        }
-
-        // Update all dashboards
-        function updateAllDashboards() {
-            // Dashboard stats
-            document.getElementById('totalProperties').textContent = data.properties.length;
-            document.getElementById('totalTenants').textContent = data.tenants.length;
-
-            const monthlyRevenue = data.rent
-                .filter(r => r.status === 'Paid')
-                .reduce((sum, r) => sum + r.amount, 0);
-            document.getElementById('monthlyRevenue').textContent = '₹' + monthlyRevenue.toLocaleString();
-
-            const overdueRent = data.rent
-                .filter(r => r.status === 'Overdue')
-                .reduce((sum, r) => sum + r.amount, 0);
-            document.getElementById('overdueRent').textContent = '₹' + overdueRent.toLocaleString();
-
-            const pendingMaintenance = data.maintenance.filter(m => m.status === 'Open').length;
-            document.getElementById('pendingMaintenance').textContent = pendingMaintenance;
-
-            const openComplaints = data.complaints.filter(c => c.status === 'Open').length;
-            document.getElementById('openComplaints').textContent = openComplaints;
-
-            // Update tables
-            updatePropertyTable();
-            updateTenantTable();
-            updateRentTable();
-            updateLeaseTable();
-            updateMaintenanceTable();
-            updateComplaintTable();
-            updateFinanceTable();
-            updateOccupancyTable();
-
-            // Export stats
-            document.getElementById('exportProperties').textContent = data.properties.length;
-            document.getElementById('exportTenants').textContent = data.tenants.length;
-            document.getElementById('exportLeases').textContent = data.leases.length;
-            document.getElementById('exportRents').textContent = data.rent.length;
-            document.getElementById('exportTransactions').textContent = data.finances.length;
-
-            // Reports stats
-            const totalIncome = data.finances
-                .filter(f => f.type.includes('Income'))
-                .reduce((sum, f) => sum + f.amount, 0);
-            document.getElementById('totalIncome').textContent = '₹' + totalIncome.toLocaleString();
-
-            const totalExpense = data.finances
-                .filter(f => f.type.includes('Expense'))
-                .reduce((sum, f) => sum + f.amount, 0);
-            document.getElementById('totalExpense').textContent = '₹' + totalExpense.toLocaleString();
-
-            const netProfit = totalIncome - totalExpense;
-            document.getElementById('netProfit').textContent = '₹' + netProfit.toLocaleString();
+        function deleteExpenditure(id) {
+            if (confirm('Delete this expenditure?')) {
+                DB.expenditures = DB.expenditures.filter(e => e.id !== id);
+                saveDB();
+                updateAllDashboards();
+            }
         }
 
         // Charts
-        function updateIncomeChart() {
-            const ctx = document.getElementById('incomeChart');
+        function updateDashboardChart() {
+            const ctx = document.getElementById('dashboardChart');
             if (!ctx) return;
 
-            const monthlyData = {};
-            data.rent.forEach(r => {
-                const month = r.dueDate.substring(0, 7);
-                monthlyData[month] = (monthlyData[month] || 0) + (r.status === 'Paid' ? r.amount : 0);
-            });
-
-            const labels = Object.keys(monthlyData).sort();
-            const amounts = labels.map(m => monthlyData[m]);
+            const revenue = DB.payments.reduce((sum, p) => sum + p.amount, 0);
+            const expenses = DB.expenditures.reduce((sum, e) => sum + e.amount, 0);
 
             new Chart(ctx, {
-                type: 'line',
+                type: 'doughnut',
                 data: {
-                    labels: labels,
+                    labels: ['Revenue', 'Expenses'],
                     datasets: [{
-                        label: 'Monthly Rent Income',
-                        data: amounts,
-                        borderColor: '#667eea',
-                        backgroundColor: 'rgba(102, 126, 234, 0.1)',
-                        tension: 0.4
+                        data: [revenue, expenses],
+                        backgroundColor: ['#5de0a8', '#f09090']
                     }]
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: true,
-                            position: 'top'
-                        }
-                    }
+                    maintainAspectRatio: false
                 }
             });
         }
 
         function updateReportsChart() {
-            const ctx = document.getElementById('reportChart');
+            const ctx = document.getElementById('reportsChart');
             if (!ctx) return;
 
-            const monthlyIncome = {};
-            const monthlyExpense = {};
-
-            data.finances.forEach(f => {
-                const month = f.date.substring(0, 7);
-                if (f.type.includes('Income')) {
-                    monthlyIncome[month] = (monthlyIncome[month] || 0) + f.amount;
-                } else {
-                    monthlyExpense[month] = (monthlyExpense[month] || 0) + f.amount;
-                }
-            });
-
-            const allMonths = new Set([...Object.keys(monthlyIncome), ...Object.keys(monthlyExpense)]);
-            const labels = Array.from(allMonths).sort();
+            const revenue = DB.payments.reduce((sum, p) => sum + p.amount, 0);
+            const expenses = DB.expenditures.reduce((sum, e) => sum + e.amount, 0);
 
             new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: labels,
-                    datasets: [
-                        {
-                            label: 'Income',
-                            data: labels.map(m => monthlyIncome[m] || 0),
-                            backgroundColor: '#28a745'
-                        },
-                        {
-                            label: 'Expense',
-                            data: labels.map(m => monthlyExpense[m] || 0),
-                            backgroundColor: '#dc3545'
-                        }
-                    ]
+                    labels: ['Revenue', 'Expenses', 'Net Profit'],
+                    datasets: [{
+                        label: 'Amount (₹)',
+                        data: [revenue, expenses, revenue - expenses],
+                        backgroundColor: ['#80b8f0', '#f0d060', '#5de0a8']
+                    }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: true,
-                            position: 'top'
+                    scales: {
+                        y: {
+                            beginAtZero: true
                         }
                     }
                 }
             });
+
+            document.getElementById('reportTotalPayments').textContent = '₹' + revenue.toLocaleString();
+            document.getElementById('reportTotalExpenditure').textContent = '₹' + expenses.toLocaleString();
         }
 
-        // Export functions
+        // Export Functions
         function exportToCSV() {
-            let csv = 'PROPERTIES\n';
-            csv += 'Property ID,Type,Area,Status\n';
-            data.properties.forEach(p => {
-                csv += `${p.propertyId},${p.type},${p.area},${p.status}\n`;
+            let csv = 'TOWNSHIPS\n';
+            csv += 'Name,Location\n';
+            DB.townships.forEach(t => {
+                csv += `${t.name},${t.location || ''}\n`;
+            });
+
+            csv += '\nPROPERTIES\n';
+            csv += 'Name,Township,Type,Area\n';
+            DB.properties.forEach(p => {
+                const tw = DB.townships.find(t => t.id === p.townshipId);
+                csv += `${p.name},${tw ? tw.name : ''},${p.type},${p.area || ''}\n`;
             });
 
             csv += '\nTENANTS\n';
-            csv += 'Name,Email,Phone,Property\n';
-            data.tenants.forEach(t => {
-                csv += `${t.name},${t.email},${t.phone},${t.property || 'N/A'}\n`;
+            csv += 'Name,Property,Start Date,End Date,Monthly Rent\n';
+            DB.tenants.forEach(t => {
+                const prop = DB.properties.find(p => p.id === t.propertyId);
+                csv += `${t.name},${prop ? prop.name : ''},${t.startDate},${t.endDate || ''},${t.monthlyRent}\n`;
             });
 
-            csv += '\nRENT RECORDS\n';
-            csv += 'Tenant,Amount,Due Date,Status\n';
-            data.rent.forEach(r => {
-                const tenant = data.tenants.find(t => t.id == r.tenant);
-                csv += `${tenant ? tenant.name : 'N/A'},${r.amount},${r.dueDate},${r.status}\n`;
+            csv += '\nPAYMENTS\n';
+            csv += 'Tenant,Amount,Date,Received By\n';
+            DB.payments.forEach(p => {
+                const tenant = DB.tenants.find(t => t.id === p.tenantId);
+                csv += `${tenant ? tenant.name : ''},${p.amount},${p.date},${p.receivedBy || ''}\n`;
             });
 
             const blob = new Blob([csv], { type: 'text/csv' });
@@ -1496,7 +1341,7 @@
         }
 
         function backupData() {
-            const backup = JSON.stringify(data, null, 2);
+            const backup = JSON.stringify(DB, null, 2);
             const blob = new Blob([backup], { type: 'application/json' });
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -1507,19 +1352,15 @@
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('financeDate').value = today;
-            document.getElementById('rentDueDate').value = today;
-
+            loadDB();
             document.getElementById('restoreFile').addEventListener('change', function(e) {
                 const file = e.target.files[0];
                 if (file) {
                     const reader = new FileReader();
                     reader.onload = function(event) {
                         try {
-                            const restored = JSON.parse(event.target.result);
-                            Object.assign(data, restored);
-                            saveData();
+                            DB = JSON.parse(event.target.result);
+                            saveDB();
                             updateAllDashboards();
                             alert('Data restored successfully!');
                         } catch (err) {
